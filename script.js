@@ -82,104 +82,109 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Assessment Modal Logic
-    const modal = document.getElementById('assessment-modal');
-    const openBtns = document.querySelectorAll('a[href="#"], .btn-primary:not([type="submit"])');
-    const closeBtn = document.querySelector('.modal-close');
-    const nextBtn = document.getElementById('btn-next');
-    const backBtn = document.getElementById('btn-back');
-    const steps = document.querySelectorAll('.assessment-step');
-    const progressBar = document.getElementById('assessment-progress');
-    const currentStepIndicator = document.getElementById('current-step');
+    // --- Assessment Logic (Page-based or Modal-based) ---
+    const assessmentContainer = document.getElementById('assessment-container') || document.getElementById('assessment-modal');
     
-    let currentStep = 1;
-    const totalSteps = 4;
+    if (assessmentContainer) {
+        let currentStep = 1;
+        const steps = assessmentContainer.querySelectorAll('.assessment-step');
+        const totalSteps = steps.length;
+        const progressBar = assessmentContainer.querySelector('#assessment-progress');
+        const currentStepIndicator = assessmentContainer.querySelector('#current-step');
+        const nextBtn = assessmentContainer.querySelector('#assessment-next') || assessmentContainer.querySelector('#btn-next');
+        const prevBtn = assessmentContainer.querySelector('#assessment-prev') || assessmentContainer.querySelector('#btn-back');
+        const modalOverlay = document.getElementById('assessment-modal');
+        const closeBtn = assessmentContainer.querySelector('.modal-close');
 
-    // Open/Close Modal
-    openBtns.forEach(btn => {
-        // Only target buttons that don't have a specific anchor tag
-        if (btn.getAttribute('href') === '#' || (!btn.hasAttribute('href') && !btn.closest('form'))) {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        const updateAssessmentState = () => {
+            // Update steps visibility
+            steps.forEach((step, index) => {
+                if (index === currentStep - 1) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+
+            // Update progress bar
+            if (progressBar) {
+                progressBar.style.width = `${(currentStep / totalSteps) * 100}%`;
+            }
+            if (currentStepIndicator) {
+                currentStepIndicator.textContent = currentStep;
+            }
+
+            // Update buttons
+            if (prevBtn) {
+                if (currentStep === 1) {
+                    prevBtn.disabled = true;
+                    prevBtn.style.visibility = 'hidden';
+                } else if (currentStep === totalSteps) {
+                    prevBtn.style.display = 'none';
+                } else {
+                    prevBtn.disabled = false;
+                    prevBtn.style.visibility = 'visible';
+                    prevBtn.style.display = 'block';
+                }
+            }
+
+            if (nextBtn) {
+                if (currentStep === totalSteps) {
+                    nextBtn.textContent = 'Create Account';
+                    nextBtn.onclick = () => window.location.href = 'auth.html';
+                } else {
+                    nextBtn.textContent = 'Next Step';
+                    nextBtn.onclick = null;
+                }
+            }
+        };
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateAssessmentState();
+                }
             });
         }
-    });
 
-    const closeModal = () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-        setTimeout(resetModal, 300); // Reset after closing animation
-    };
-
-    closeBtn.addEventListener('click', closeModal);
-    
-    // Close on clicking outside
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateAssessmentState();
+                }
+            });
         }
-    });
 
-    // Navigation logic
-    const updateModalState = () => {
-        // Update steps visibility
-        steps.forEach((step, index) => {
-            if (index === currentStep - 1) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
+        // Modal specific logic if still present
+        if (modalOverlay) {
+            const openBtns = document.querySelectorAll('.btn-assessment');
+            openBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Only prevent default if it's meant to open a modal on the same page
+                    if (btn.getAttribute('href') === '#' || btn.getAttribute('href') === '') {
+                        e.preventDefault();
+                        modalOverlay.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
 
-        // Update progress bar
-        progressBar.style.width = `${(currentStep / totalSteps) * 100}%`;
-        currentStepIndicator.textContent = currentStep;
+            const closeModal = () => {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                currentStep = 1;
+                updateAssessmentState();
+            };
 
-        // Update buttons
-        if (currentStep === 1) {
-            backBtn.disabled = true;
-            nextBtn.textContent = 'Next Step';
-            nextBtn.style.display = 'block';
-        } else if (currentStep === totalSteps) {
-            backBtn.disabled = true;
-            backBtn.style.display = 'none';
-            nextBtn.textContent = 'Done';
-        } else {
-            backBtn.disabled = false;
-            backBtn.style.display = 'block';
-            nextBtn.textContent = 'Next Step';
-            nextBtn.style.display = 'block';
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) closeModal();
+            });
         }
-    };
 
-    nextBtn.addEventListener('click', () => {
-        if (currentStep < totalSteps) {
-            currentStep++;
-            updateModalState();
-        } else {
-            closeModal();
-        }
-    });
-
-    backBtn.addEventListener('click', () => {
-        if (currentStep > 1) {
-            currentStep--;
-            updateModalState();
-        }
-    });
-
-    const resetModal = () => {
-        currentStep = 1;
-        updateModalState();
-        
-        // Uncheck inputs
-        document.querySelectorAll('.modal-container input[type="radio"], .modal-container input[type="checkbox"]').forEach(input => {
-            input.checked = false;
-        });
-        document.querySelectorAll('.modal-container select, .modal-container input[type="email"]').forEach(input => {
-            input.value = '';
-        });
-    };
+        // Initialize state
+        updateAssessmentState();
+    }
 });
