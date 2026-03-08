@@ -556,6 +556,189 @@ a {
     font-size: 0.9375rem;
 }
 
+/* --- Therapists Section --- */
+.therapists {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--secondary-color);
+}
+
+.therapist-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+}
+
+.therapist-card {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #f1f5f9;
+}
+
+.therapist-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
+}
+
+.therapist-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.therapist-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.therapist-card:hover .therapist-image::after {
+    opacity: 1;
+}
+
+.therapist-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.therapist-card:hover .therapist-image img {
+    transform: scale(1.08);
+}
+
+.therapist-info {
+    padding: 1.5rem;
+}
+
+.therapist-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--text-main);
+}
+
+.therapist-specialty {
+    color: var(--primary-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.therapist-focus {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.therapist-rating {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--white);
+    color: var(--text-main);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.therapist-rating i {
+    color: #fbbf24;
+}
+
+.therapist-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.therapist-image-overlay .btn {
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.therapist-card:hover .therapist-image-overlay {
+    opacity: 1;
+}
+
+.therapist-card:hover .therapist-image-overlay .btn {
+    transform: translateY(0);
+}
+
+.therapist-name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+
+.therapist-name-row .therapist-name {
+    margin-bottom: 0;
+}
+
+.credential {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.therapist-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tag {
+    background-color: #f1f5f9;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tag:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.section-footer {
+    display: flex;
+    justify-content: center;
+}
+
 /* --- CTA Section --- */
 .cta-section {
     padding: var(--spacing-lg) 0;
@@ -655,7 +838,7 @@ a {
         100% { transform: translate(-50%, 0px); }
     }
     
-    .features-grid {
+    .features-grid, .therapist-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -690,7 +873,7 @@ a {
         max-width: 400px;
     }
     
-    .features-grid {
+    .features-grid, .therapist-grid {
         grid-template-columns: 1fr;
     }
     
