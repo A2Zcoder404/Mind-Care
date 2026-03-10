@@ -1,8 +1,26 @@
+// Global hideLoader function so data-dependent pages can trigger it manually
+window.hideLoader = function (enforceDelay = false) {
+    const loader = document.querySelector('.page-loader');
+    if (!loader) return;
+
+    // Check if this is the landing page loader (which has a 2s delay)
+    const isLandingLoader = loader.querySelector('.loader-text-anim') !== null || loader.querySelector('.loader-wave-text') !== null;
+    const delay = (isLandingLoader && enforceDelay) ? 2000 : 0;
+
+    setTimeout(() => {
+        loader.classList.add('fade-out');
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 500); // Wait for CSS opacity transition
+    }, delay);
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
-    
+
     window.addEventListener('scroll', () => {
+        if (!navbar) return;
         if (window.scrollY > 20) {
             navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
             navbar.style.borderBottom = 'none';
@@ -16,16 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 const headerOffset = 80; // navbar height
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-  
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
@@ -61,19 +79,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // FAQ Accordion
     const faqQuestions = document.querySelectorAll('.faq-question');
-    
+
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
             const item = question.parentElement;
             const answer = item.querySelector('.faq-answer');
             const isActive = item.classList.contains('active');
-            
+
             // Close all items
             document.querySelectorAll('.faq-item').forEach(faqItem => {
                 faqItem.classList.remove('active');
                 faqItem.querySelector('.faq-answer').style.maxHeight = null;
             });
-            
+
             // If the clicked item wasn't active, open it
             if (!isActive) {
                 item.classList.add('active');
@@ -84,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Assessment Logic (Page-based or Modal-based) ---
     const assessmentContainer = document.getElementById('assessment-container') || document.getElementById('assessment-modal');
-    
+
     if (assessmentContainer) {
         let currentStep = 1;
         const steps = assessmentContainer.querySelectorAll('.assessment-step');
@@ -131,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (nextBtn) {
                 if (currentStep === totalSteps) {
                     nextBtn.textContent = 'Create Account';
-                    nextBtn.onclick = () => window.location.href = 'auth.html';
+                    nextBtn.onclick = () => window.location.href = 'signup.html';
                 } else {
                     nextBtn.textContent = 'Next Step';
                     nextBtn.onclick = null;

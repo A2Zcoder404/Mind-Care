@@ -1,13 +1,12 @@
 /* --- Auth Page Specific Styles --- */
 .auth-page {
     background-color: var(--secondary-color);
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
 .auth-wrapper {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* --- Simple Centered Auth Layout --- */
@@ -60,7 +59,7 @@
 
 .auth-container {
     width: 100%;
-    max-width: 440px;
+    max-width: 480px;
     margin: auto; /* Centers it vertically and horizontally in the flex column */
     position: relative;
     /* Extra height padding so form doesn't clip on small screens */

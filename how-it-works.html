@@ -9,10 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
+    <div class="page-loader"><div class="loader-spinner"></div></div>
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
@@ -26,8 +27,8 @@
                 <a href="faqs.html" class="nav-link">FAQ</a>
             </div>
             <div class="nav-actions">
-                <a href="auth.html" class="btn btn-outline">Log In</a>
-                <a href="auth.html" class="btn btn-primary">Sign Up</a>
+                <a href="login.html" class="btn btn-outline">Log In</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
             </div>
             <button class="menu-toggle" aria-label="Toggle Menu">
                 <i class="ri-menu-line"></i>
@@ -119,6 +120,9 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script/script.js"></script>
+<script type="module" src="script/auth-state.js"></script>
 </body>
 </html>
+
+

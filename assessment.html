@@ -11,7 +11,7 @@
     <!-- Remix Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
     <style>
         .assessment-page-wrapper {
             min-height: calc(100vh - 80px);
@@ -118,6 +118,7 @@
     </style>
 </head>
 <body class="bg-secondary">
+    <div class="page-loader"><div class="loader-spinner"></div></div>
 
     <nav class="navbar">
         <div class="container nav-container">
@@ -132,8 +133,8 @@
                 <a href="faqs.html" class="nav-link">FAQ</a>
             </div>
             <div class="nav-actions">
-                <a href="auth.html" class="btn btn-outline">Log In</a>
-                <a href="auth.html" class="btn btn-primary">Sign Up</a>
+                <a href="login.html" class="btn btn-outline">Log In</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
             </div>
         </div>
     </nav>
@@ -301,6 +302,9 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script/script.js"></script>
+<script type="module" src="script/auth-state.js"></script>
 </body>
 </html>
+
+

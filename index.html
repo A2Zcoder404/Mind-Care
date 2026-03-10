@@ -14,10 +14,13 @@
     <!-- Remix Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
+    <div class="page-loader">
+        <div class="loader-wave-text" data-text="MINDCARE">MINDCARE</div>
+    </div>
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
@@ -31,8 +34,8 @@
                 <a href="faqs.html" class="nav-link">FAQ</a>
             </div>
             <div class="nav-actions">
-                <a href="auth.html" class="btn btn-outline">Log In</a>
-                <a href="auth.html" class="btn btn-primary">Sign Up</a>
+                <a href="login.html" class="btn btn-outline">Log In</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
             </div>
             <button class="menu-toggle" aria-label="Toggle Menu">
                 <i class="ri-menu-line"></i>
@@ -50,7 +53,8 @@
                     <p class="hero-description">Professional, compassionate mental health counseling accessible from the
                         comfort of your home. Connect with licensed therapists who understand you.</p>
                     <div class="hero-actions">
-                        <a href="assessment.html" class="btn btn-primary btn-lg btn-assessment">Get Matched with a Therapist</a>
+                        <a href="assessment.html" class="btn btn-primary btn-lg btn-assessment">Get Matched with a
+                            Therapist</a>
                         <a href="how-it-works.html" class="btn btn-secondary btn-lg play-btn">
                             <div class="play-icon"><i class="ri-play-fill"></i></div> Let's see how it works
                         </a>
@@ -127,7 +131,8 @@
                             therapist within 24 hours.</p>
                     </div>
                     <div class="cta-action">
-                        <a href="assessment.html" class="btn btn-primary btn-lg btn-assessment">Start Your Assessment</a>
+                        <a href="assessment.html" class="btn btn-primary btn-lg btn-assessment">Start Your
+                            Assessment</a>
                     </div>
                 </div>
             </div>
@@ -142,7 +147,7 @@
                     <span>MindCare</span>
                 </a>
             </div>
-            
+
 
 
             <div class="footer-socials">
@@ -153,7 +158,7 @@
             </div>
 
             <div class="footer-divider"></div>
-            
+
             <div class="footer-bottom-row">
                 <div class="footer-copyright">
                     <p>&copy; 2026 MindCare Inc. All rights reserved.</p>
@@ -167,7 +172,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script/script.js"></script>
+    <script type="module" src="script/auth-state.js"></script>
 </body>
 
 </html>

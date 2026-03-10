@@ -9,12 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
+    <div class="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
     <nav class="navbar">
         <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="ri-heart-pulse-line"></i></div>
+                <span>MindCare</span>
+            </a>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="how-it-works.html" class="nav-link">Process</a>
@@ -22,8 +29,8 @@
                 <a href="faqs.html" class="nav-link active">FAQ</a>
             </div>
             <div class="nav-actions">
-                <a href="auth.html" class="btn btn-outline">Log In</a>
-                <a href="auth.html" class="btn btn-primary">Sign Up</a>
+                <a href="login.html" class="btn btn-outline">Log In</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
             </div>
             <button class="menu-toggle" aria-label="Toggle Menu">
                 <i class="ri-menu-line"></i>
@@ -48,7 +55,9 @@
                             <i class="ri-add-line"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>After you complete our brief assessment, our algorithm matching system pairs you with a therapist who aligns with your specific needs, preferences, and goals. You can usually start messaging your therapist within 24 hours.</p>
+                            <p>After you complete our brief assessment, our algorithm matching system pairs you with a
+                                therapist who aligns with your specific needs, preferences, and goals. You can usually
+                                start messaging your therapist within 24 hours.</p>
                         </div>
                     </div>
                     <div class="faq-item">
@@ -57,7 +66,9 @@
                             <i class="ri-add-line"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>Absolutely. All MindCare therapists are licensed, trained, experienced, and accredited psychologists (PhD / PsyD), licensed marriage and family therapists (LMFT), licensed clinical social workers (LCSW / LMSW), or licensed professional counselors (LPC).</p>
+                            <p>Absolutely. All MindCare therapists are licensed, trained, experienced, and accredited
+                                psychologists (PhD / PsyD), licensed marriage and family therapists (LMFT), licensed
+                                clinical social workers (LCSW / LMSW), or licensed professional counselors (LPC).</p>
                         </div>
                     </div>
                     <div class="faq-item">
@@ -66,7 +77,9 @@
                             <i class="ri-add-line"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>You can communicate with your therapist in four different ways: exchanging messages anytime, chatting live in real-time context, speaking over the phone, or connecting via secure, face-to-face video sessions.</p>
+                            <p>You can communicate with your therapist in four different ways: exchanging messages
+                                anytime, chatting live in real-time context, speaking over the phone, or connecting via
+                                secure, face-to-face video sessions.</p>
                         </div>
                     </div>
                     <div class="faq-item">
@@ -75,7 +88,10 @@
                             <i class="ri-add-line"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>Services offered through MindCare are generally not covered by Medicare or Medicaid. However, if you have health insurance, your services may be partially or fully covered depending on your provider. We provide necessary documentation for out-of-network claims.</p>
+                            <p>Services offered through MindCare are generally not covered by Medicare or Medicaid.
+                                However, if you have health insurance, your services may be partially or fully covered
+                                depending on your provider. We provide necessary documentation for out-of-network
+                                claims.</p>
                         </div>
                     </div>
                 </div>
@@ -91,7 +107,7 @@
                     <span>MindCare</span>
                 </a>
             </div>
-            
+
 
 
             <div class="footer-socials">
@@ -102,7 +118,7 @@
             </div>
 
             <div class="footer-divider"></div>
-            
+
             <div class="footer-bottom-row">
                 <div class="footer-copyright">
                     <p>&copy; 2026 MindCare Inc. All rights reserved.</p>
@@ -116,6 +132,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script/script.js"></script>
+    <script type="module" src="script/auth-state.js"></script>
 </body>
+
 </html>
