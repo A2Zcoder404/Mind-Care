@@ -76,6 +76,23 @@
                 </form>
 
                 <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+            <!-- Verification Waiting UI -->
+            <div class="auth-form-box text-center" id="verification-wait" style="display: none; padding: 2rem 0;">
+                <div class="verification-icon">
+                    <i class="ri-mail-send-line"></i>
+                </div>
+                <h2 style="margin-bottom: 1rem;">Check your inbox</h2>
+                <p class="auth-subtitle" style="margin-bottom: 2.5rem; max-width: 400px; margin-inline: auto;">
+                    We sent a verification link to your email. Please click the link to verify your account.
+                </p>
+
+                <button type="button" class="btn btn-outline btn-block" id="resend-verification-btn" style="margin-bottom: 2rem;">
+                    Resend Link
+                </button>
+
+                <div class="waiting-status" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                    Waiting for verification... <i class="ri-loader-4-line ri-spin"></i>
+                </div>
             </div>
         </div>
     </div>

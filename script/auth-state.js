@@ -42,7 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const signupBtn = navActions.querySelector('a[href="signup.html"]');
 
         onAuthStateChanged(auth, async (user) => {
-            if (user) {
+            // Treat unverified email users as logged out for the navbar UI
+            const isVerifiedOrGoogle = user && (user.emailVerified || user.providerData.some(p => p.providerId === 'google.com'));
+            
+            if (isVerifiedOrGoogle) {
                 // User is signed in
                 if (loginBtn) loginBtn.style.display = 'none';
                 if (signupBtn) signupBtn.style.display = 'none';

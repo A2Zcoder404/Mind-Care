@@ -206,6 +206,33 @@
     text-decoration: underline;
 }
 
+/* --- Verification UI Styles --- */
+.verification-icon {
+    width: 64px;
+    height: 64px;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 0 0 8px rgba(204, 251, 241, 0.5); /* subtle glow */
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.auth-form-box h2 {
+    font-size: 2rem;
+}
+
+#verification-wait {
+    animation: fadeInSlideUp 0.5s ease forwards;
+}
+
 @media (max-width: 991px) {
     .auth-wrapper.center-layout {
         height: auto;
@@ -215,5 +242,15 @@
     
     .centered-card {
         padding: 2rem 1.5rem;
+    }
+
+    .auth-form-box h2 {
+        font-size: 1.5rem; /* Scale down titles for mobile */
+    }
+
+    .verification-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem; /* Scale down icon for mobile */
     }
 }
